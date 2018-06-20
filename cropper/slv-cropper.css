@@ -1,0 +1,53 @@
+.slv-canvas-container {
+  display: inline-block;
+  border: 1px solid #777;
+  position: relative;
+  cursor: crosshair;
+  font-size: 0px; }
+  .slv-canvas-container .image-roi {
+    display: none;
+    border: 2px dotted orangered;
+    position: absolute;
+    cursor: move; }
+    .slv-canvas-container .image-roi.roi-visible {
+      display: block; }
+    .slv-canvas-container .image-roi .handler {
+      display: none;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: orangered; }
+      .slv-canvas-container .image-roi .handler.h11 {
+        top: -7px;
+        left: -5px;
+        cursor: nw-resize; }
+      .slv-canvas-container .image-roi .handler.h12 {
+        top: -5px;
+        left: calc(50% - 5px);
+        cursor: n-resize; }
+      .slv-canvas-container .image-roi .handler.h13 {
+        top: -5px;
+        right: -5px;
+        cursor: ne-resize; }
+      .slv-canvas-container .image-roi .handler.h21 {
+        top: calc(50% - 5px);
+        left: -5px;
+        cursor: w-resize; }
+      .slv-canvas-container .image-roi .handler.h23 {
+        top: calc(50% - 5px);
+        right: -5px;
+        cursor: w-resize; }
+      .slv-canvas-container .image-roi .handler.h31 {
+        bottom: -5px;
+        left: -5px;
+        cursor: ne-resize; }
+      .slv-canvas-container .image-roi .handler.h32 {
+        bottom: -5px;
+        left: calc(50% - 5px);
+        cursor: n-resize; }
+      .slv-canvas-container .image-roi .handler.h33 {
+        bottom: -5px;
+        right: -5px;
+        cursor: nw-resize; }
+    .slv-canvas-container .image-roi.roi-fitting .handler {
+      display: block; }

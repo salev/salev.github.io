@@ -1,0 +1,70 @@
+  .slv-canvas-container {
+    display: inline-block;
+    border: 1px solid #777;
+    position: relative;
+    cursor: crosshair;
+    font-size: 0px;
+    .image-roi {
+      display: none;
+      border: 2px dotted orangered;
+      position: absolute;
+      cursor: move;
+      &.roi-visible {
+        display: block;
+      }
+      $handler_size: 10px;
+      $handler_size_half: $handler_size/2;
+      .handler {
+        display: none;
+        position: absolute;
+        width: $handler_size;
+        height: $handler_size;
+        background-color: orangered;
+        &.h11 {
+          top: -$handler_size_half - 2px;
+          left: -$handler_size_half;
+          cursor: nw-resize;
+        }
+        &.h12 {
+          top: -$handler_size_half;
+          left: calc(50% - #{$handler_size_half});
+          cursor: n-resize;
+        }
+        &.h13 {
+          top: -$handler_size_half;
+          right: -$handler_size_half;
+          cursor: ne-resize;
+        }
+        &.h21 {
+          top: calc(50% - #{$handler_size_half});
+          left: -$handler_size_half;
+          cursor: w-resize;
+        }
+        &.h23 {
+          top: calc(50% - #{$handler_size_half});
+          right: -$handler_size_half;
+          cursor: w-resize;
+        }
+        &.h31 {
+          bottom: -$handler_size_half;
+          left: -$handler_size_half;
+          cursor: ne-resize;
+        }
+        &.h32 {
+          bottom: -$handler_size_half;
+          left: calc(50% - #{$handler_size_half});
+          cursor: n-resize;
+        }
+        &.h33 {
+          bottom: -$handler_size_half;
+          right: -$handler_size_half;
+          cursor: nw-resize;
+        }
+
+      }
+      &.roi-fitting .handler {
+        display: block;
+      }
+    }
+  }
+

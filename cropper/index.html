@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SLV Image Cropper</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+  <link rel="stylesheet" href="slv-cropper.css"/>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="slv-cropper_jquery.js"></script>
+
+</head>
+<body class="container">
+
+  <script>
+    var slvCropper;
+
+    function saveCallback(croppedImg) {
+      $('#result-image').attr("src", croppedImg);
+    }
+
+    $(document).ready(function () {
+      slvCropper = createSlvCropper('#test-canvas');
+      slvCropper.open('cat.jpg');
+    });
+
+  </script>
+
+
+  <h3>SLV Image Cropper Demo</h3>
+  <br>
+
+  <div>
+    <table>
+      <tr>
+
+        <td class="picture-btn-panel">
+          <div class="btn-toolbar" role="toolbar" aria-label="Toolbar of picture processor">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <input type="file" id="picture-file-input" accept="image/*"
+                     onchange="slvCropper.onImageFileSelection(this.files)"
+                     style="display: none;">
+              <button class="btn btn-secondary" onclick="slvCropper.open('#picture-file-input')" title="open a picture">
+                <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-secondary" onclick="slvCropper.crop()" title="crop a picture">
+                <i class="fa fa-scissors" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-secondary" onclick="slvCropper.box()" title="draw ROI box">
+                <i class="fa fa-square-o" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-secondary" onclick="slvCropper.save(saveCallback)" title="save result">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+              </button>
+            </div>
+
+          </div>
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          <canvas id="test-canvas" width="300" height="300"></canvas>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <hr />
+
+  <p>cropped image: <i>(click save to see result)</i></p>
+  <img id="result-image" src="">
+
+</body>
+</html>
