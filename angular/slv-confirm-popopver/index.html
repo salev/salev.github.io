@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>SLV Confirmation Popopver</title><base href="/angular/slv-tree/"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="styles.970f7ec6123e756eddca.bundle.css" rel="stylesheet"/></head><body><div class="container"><div class="row"><div class="col-md-5"><br/><h3>SLV Confirmation Popopver (Angular 5)</h3><br/><p>A link element which triggers delete event has the following code:</p><pre><code class="html">    &lt;a href="javascript: ;"
+       class="pull-right"
+       (click)="deleteItem(idx)"
+       slv-confirm="To delete &quot;{{item.name}}&quot;?"
+       placement="left"&gt;
+      &lt;i class="fa fa-trash-alt text-danger"&gt;&lt;/i&gt;
+    &lt;/a&gt; </code></pre><br/><p><b>slv-confirm</b> directive shows a confirmation popover to make sure if a user really want to delete an object.</p><p>Pay attention that the directive inherits options of ngx-popover. So, here the popover is placed left with help of <code>placement="left"</code>.</p><br/></div><div class="col-md-7"><br/><br><br><div id="slv-confirm-popopver-container"></div></div></div></div><script>var g_exampleName = "confirm_popopver" ;</script><script type="text/javascript" src="inline.318b50c57b4eba3d437b.bundle.js"></script><script type="text/javascript" src="polyfills.50b851ccd19aa9b94ce1.bundle.js"></script><script type="text/javascript" src="scripts.dbe071d6de23469cc2ea.bundle.js"></script><script type="text/javascript" src="main.b380da4d42330599afd7.bundle.js"></script></body></html>
