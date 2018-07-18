@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>SLV Confirmation Popopver</title><base href="/"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="styles.970f7ec6123e756eddca.bundle.css" rel="stylesheet"/></head><body><div class="container-fluid"><div class="row"><div class="col-md-6"><br/><h3>SLV Tree (Angular 5)</h3><br/><p>The tree is populated with help of AJAX request to a server <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a>.</p><p>There are 3 kinds of items (leafs):</p><p>1. User 2. Post 3. Comment</p><p>Start with names of users.</p><pre><code>  ngOnInit() {
+    this.tree = new Tree(this.onClick.bind(this));
+    this.reqService.fetchUsers()
+      .map(users => users.map(user => new Leaf('name', new User(user), true, 'fa-user'))
+      )
+      .subscribe(
+        (leaves) => {
+          this.tree.insertLeaves(leaves);
+        },
+        () => alert('error')
+      );
+  }</code></pre><p>Description of the code above:</p><ol><li>A new Tree object was built. The parameter is a click callback.</li><li>Users array fetched from server.</li><li>Leaves array created accordingly to users array. Leaf parameters:<ul><li>field name of a User class which used as a label</li><li>User object to be bound to a leaf</li><li>a flag if a leaf is parent (branch)</li><li>symbol of awesome font</li></ul></li><li>The leaves inserted into the tree.</li></ol><br/><p>Callback function on leaf click:</p><pre><code>onClick(data: User | Post | Comment, isVisited: boolean, leaf: Leaf) {
+    // reset selected objects
+    this.user = null;
+    this.post = null;
+    this.comment = null;
+
+    // 1. User
+    if (data instanceof User) {
+
+      this.user = <User>{...data};
+      if (!isVisited) {
+        this.reqService.fetchPosts(data)
+          .map(
+            posts => {
+              return posts.map(post => new Leaf('title', new Post(post), true, 'fa-edit'));
+            }
+          )
+          .subscribe(
+            (leaves) => {
+              this.tree.insertLeaves(leaves, leaf);
+            },
+            () => alert('error')
+          );
+      }
+    }
+
+    // 2. Post
+    else if (data instanceof Post) {
+      this.post = <Post>{...data};
+
+      if (!isVisited) {
+        this.reqService.fetchComments(data)
+          .map(
+            comments => {
+              return comments.map(comment => new Leaf('name', new Comment(comment), false, 'fa-comment'));
+            }
+          )
+          .subscribe(
+            (leaves) => {
+              this.tree.insertLeaves(leaves, leaf);
+            },
+            () => alert('error')
+          );
+      }
+    }
+    // 3. comment
+    else {
+      this.comment = <Comment>{...data};
+    }
+  }</Comment></Post></User></code></pre><p>The callback gets 3 parameters:</p><ol><li>data - object bound to the clicked leaf</li><li>isVisited gives a hint if the leaf has already downloaded children leaves</li><li>leaf object</li></ol><p></p><p>If a leaf was not open (visited) previously then need to create its children leaves and insert them into clicked branch (leaf).</p><p>A reference to the current object is updated.</p><br/><p>Data bound to the selected leaf is changing with help of the following function:</p><pre><code>saveDataInLeaf(data: User | Post | Comment) {
+    this.tree.setSelectedLeafData(data);
+  }</code></pre><p>While creating of leaves, a field as a label was pointed out. So changing of its value will be reflected in UI output.</p><p><i>Note: if no need to change a label of leaves then possible to pass some static text instead of a field name. For example, a field value.</i></p></div><div class="col-md-6"><br/><br><br><div id="slv-tree-container"></div></div></div></div><script>var g_exampleName = "tree" ;</script><script type="text/javascript" src="inline.318b50c57b4eba3d437b.bundle.js"></script><script type="text/javascript" src="polyfills.50b851ccd19aa9b94ce1.bundle.js"></script><script type="text/javascript" src="scripts.dbe071d6de23469cc2ea.bundle.js"></script><script type="text/javascript" src="main.b380da4d42330599afd7.bundle.js"></script></body></html>
