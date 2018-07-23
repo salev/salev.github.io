@@ -1,0 +1,608 @@
+/*
+
+[Table of Contents]
+
+1. GENERAL STYLES
+    1.1. TYPHOGRAPHY
+    1.2. LINK COLORS
+    1.3. BUTTONS
+    1.4. BUTTON COLORS
+    1.5. LOGO
+    1.6. SECTION TITLE
+    1.7. VERTICAL CENTERING
+    1.8. BACK BUTTON
+    1.9. BREADCRUMB
+    1.10. PRELOADER
+    1.11. BROWSER UPGRADE
+
+2. HEADER AREA
+
+3. DEMO PREVIEW AREA
+
+4. COPYRIGHT AREA
+
+5. HELPER CLASSES
+    5.1. RESET GUTTER
+    5.2. BACKGROUND IMAGE
+    5.3. BORDER NONE
+*/
+
+/*------------------------------------*\
+    1. GENERAL STYLES
+\*------------------------------------*/
+/* 1.1. TYPHOGRAPHY */
+html, body {
+    font-family: "Open Sans", sans-serif;
+    height: 100%;
+}
+body {
+    background-color: #fff;
+    color: #737373;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+p {
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 300;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    color: #737373;
+}
+a, .mdl-button {
+    font-weight: 500;
+    color: #303030;
+}
+a:hover, a:focus {
+    color: #ff305b;
+    text-decoration: none;
+    outline: none;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #fff;
+}
+.form-control::-moz-placeholder {
+    color: #fff;
+}
+.form-control::-ms-input-placeholder {
+    color: #fff;
+}
+.form-control.error {
+    border-color: #ff305b;
+}
+
+/* 1.2. LINK COLORS */
+a, .btn-link {
+    color: #222;
+    -webkit-transition: color .25s, background-color .25s ease-in-out, border-color .25s;
+            transition: color .25s, background-color .25s ease-in-out, border-color .25s;
+}
+a:hover, .btn-link:hover,
+a:focus, .btn-link:focus {
+    color: #ff305b;
+}
+
+/* 1.3. BUTTONS */
+.btn {
+    padding: 9px 30px 11px;
+    background-color: transparent;
+    border-color: #999;
+    border-radius: 0;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: normal;
+    -webkit-transition: color .25s, border-color .25s, background-color .25s ease-in-out;
+    transition: color .25s, border-color .25s, background-color .25s ease-in-out;
+}
+.btn.btn-sm {
+    padding: 6px 16px;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+/* 1.4. BUTTON COLORS */
+.btn-default {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+.btn-default.white {
+    color: #fff;
+    border-color: #fff;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default:active:hover,
+.btn-default:active:focus,
+.btn-default:active.focus,
+.btn-default.focus,
+.btn-default.active,
+.btn-default.active:hover,
+.btn-default.active:focus,
+.btn-default.active.focus,
+.open > .dropdown-toggle.btn-default,
+.open > .dropdown-toggle.btn-default:hover,
+.open > .dropdown-toggle.btn-default:focus,
+.open > .dropdown-toggle.btn-default.focus {
+    color: #fff;
+    background-color: #ff305b;
+    border-color: #ff305b;
+    box-shadow: none;
+}
+
+
+.face {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    display: block;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: margin .25s;
+    background-color: #2D2530;
+    margin: 0 auto;
+    border: 3px solid #fff;
+}
+.logo span.first,
+.logo i.fa {
+    color: #ff305b;
+}
+.logo span.first,
+.logo span.second,
+.logo i.fa {
+    display: inline-block;
+    vertical-align: middle;
+}
+.logo i.fa {
+    font-size: 28px;
+    line-height: 0;
+}
+
+/* 1.6. SECTION TITLE */
+.section--title {
+    margin-bottom: 38px;
+    color: #999;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+}
+.section--title.text-left {
+    text-align: left;
+}
+.row + .section--title {
+    margin-top: 100px;
+}
+
+.section--title h2 {
+    position: relative;
+    margin: -10px 0 0;
+    padding-bottom: 15px;
+    color: #222;
+    font-size: 36px;
+    line-height: 46px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.section--title h2:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100px;
+    height: 1px;
+    background-color: #ff305b;
+    margin: 0 auto;
+}
+.section--title p:first-child {
+    margin-top: -6px;
+    margin-bottom: 5px;
+}
+
+/* 1.7. VERTICAL CENTERING */
+.vc-parent {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+.vc-child {
+    display: table-cell;
+    vertical-align: middle;
+}
+.vc-child-bottom {
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+/* 1.8. BACK BUTTON */
+.back-button {
+    margin-top: 38px;
+    display: block;
+    -webkit-transition: margin-top .25s;
+            transition: margin-top .25s;
+}
+#topNav.sticky .back-button {
+    margin-top: 31px;
+}
+.back-button span {
+    display: block;
+    background-color: #fff;
+    height: 1px;
+}
+.back-button:hover span {
+    background-color: #ff305b;
+}
+.back-button span:nth-child(1) {
+    -webkit-transform: rotate(-30deg);
+        -ms-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+    width: 13px;
+    margin-bottom: 2px;
+}
+.back-button span:nth-child(2) {
+    margin-bottom: 2px;
+    margin-left: 2px;
+    width: 30px;
+}
+.back-button span:nth-child(3) {
+    -webkit-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+            transform: rotate(30deg);
+    width: 13px;
+}
+
+/* 1.9. BREADCRUMB */
+.breadcrumb {
+    background-color: transparent;
+    padding: 8px 15px 0;
+    margin-top: 22px;
+    margin-bottom: 0;
+    -webkit-transition: padding .25s;
+            transition: padding .25s;
+}
+#topNav.sticky .breadcrumb {
+    padding: 2px 15px 22px;
+}
+.breadcrumb li a {
+    color: #fff;
+}
+.breadcrumb li a:hover {
+    color: #ff305b;
+}
+.breadcrumb>.active {
+    color: #ff305b;
+    font-weight: 300;
+}
+
+/* 1.10. PRELOADER */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff305b;
+    z-index: 9999999999;
+}
+.preloader--spinner {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    margin: -15px auto 0;
+    background-color: #fff;
+    -webkit-animation: preloaderSpinner 1.2s infinite ease-in-out;
+            animation: preloaderSpinner 1.2s infinite ease-in-out;
+}
+
+
+@-webkit-keyframes preloaderSpinner {
+    0% { -webkit-transform: perspective(120px) }
+    50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes preloaderSpinner {
+    0% { 
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    } 50% { 
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    } 100% { 
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
+
+/* 1.11. BROWSER UPGRADE */
+.browserupgrade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin: 0;
+    padding: 20px 0;
+    color: #fff;
+    background-color: #ff9800;
+    text-align: center;
+}
+.browserupgrade a {
+	color: #fff;
+	text-decoration: underline;
+}
+
+/*------------------------------------*\
+    2. HEADER AREA
+\*------------------------------------*/
+#header {
+    position: relative;
+    color: #fff;
+    background-image: url(../img/header-bg.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+#header:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.50;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    z-index: -1;
+}
+
+.header-item {
+    padding: 80px 0;
+}
+
+.header-item-2 .header-img-holder {
+    margin-top: 20px;
+}
+
+.header-img {
+    display: block;
+}
+.header-img img.img-responsive {
+    width: 100%;
+}
+
+.header-img .header-img-slider,
+.header-img .header-img-inner {
+    position: absolute;
+    top: 9.5%;
+    left: 150px;
+    width: 261px;
+    cursor: ew-resize;
+}
+.header-img-slider img {
+    max-height: 68.5%;
+}
+
+.header-item h2 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.header-item h2 span {
+    color: #adadad;
+}
+.header-item-3 h2 {
+    margin-bottom: 15px;
+}
+.header-item p {
+    padding: 0 20px;
+    color: inherit;
+    font-size: 16px;
+}
+
+.owl-fadeInDown,
+.owl-fadeInUp {
+    visibility: hidden;
+}
+.owl-item.active .owl-fadeInDown {
+    -webkit-animation: fadeInDown 1s linear 0s;
+            animation: fadeInDown 1s linear 0s;
+    visibility: visible;
+}
+.owl-item.active .owl-fadeInUp {
+    -webkit-animation: fadeInUp 1s linear 0s;
+            animation: fadeInUp 1s linear 0s;
+    visibility: visible;
+}
+.owl-item.active .animate-2x {
+    -webkit-animation-duration: 0.55s;
+            animation-duration: 0.55s;
+}
+
+.header-item a.read-more,
+.header-item a.buy-now {
+    display: inline-block;
+    min-width: 130px;
+    padding: 12px 20px;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: #fff;
+    background-color: #202736;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    -webkit-transition: color .25s, background-color .25s ease-in-out;
+            transition: color .25s, background-color .25s ease-in-out;
+    outline: 0;
+}
+
+.header-item a.read-more:hover,
+.header-item a.buy-now:hover {
+    color: #202736;
+    background-color: #fff;
+}
+
+.header-content .btn {
+    margin-top: 15px;
+}
+.header-content .btn + .btn {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#tubular-container, #tubular-shield {
+    position: absolute !important;
+    z-index: -2 !important;
+    top: 0;
+}
+
+.header-items .owl-controls {
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+}
+.header-items > .owl-controls { /* Header Slider Verion */
+    bottom: 30px;
+}
+.header-items .owl-pagination {
+    display: inline-block;
+    overflow: hidden;
+}
+.header-items .owl-page {
+    width: 8px;
+    height: 8px;
+    float: left;
+    margin: 1px 5px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    -webkit-transition: .25s;
+            transition: .25s;
+    outline: 0;
+}
+.header-items .owl-page.active {
+    width: 10px;
+    height: 10px;
+    margin-top: -0.5px;
+    margin-left: 4.5px;
+    background-color: #fff;
+}
+
+
+#projectsGrid {
+    padding-top: 80px;
+    padding-bottom: 44px;
+    background-color: #fff;
+}
+#projectsGrid .section-title {
+    margin-bottom: 30px;
+}
+
+.project-item {
+    margin-top: 30px;
+    border: 2px solid #2a262f1c;
+    border-radius: 5px;
+    padding: 0px 15px;
+    min-height: 250px;
+}
+
+.project-item .links {
+    position: absolute;
+    bottom: 0px;
+}
+.project-item .links a {
+    margin-right: 12px;
+    transition: color .25s ease;
+    font-size: 85%
+}
+.project-item a:hover,
+.project-item a:focus {
+    color: #ff305b;
+}
+.project-item .fa-angular {
+    color: #DD0031;
+}
+.project-item .jQuery {
+    color: #0769AD;
+    font-size: 60%;
+}
+
+.project-item h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+}
+
+
+#copyright {
+    padding: 32px 0 31px;
+    background-color: #111C29;
+}
+#copyright p {
+    margin-bottom: 0;
+    color: #999;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+#copyright p a {
+    color: #ff305b;
+    font-weight: normal;
+}
+
+/*------------------------------------*\
+    5. HELPER CLASSES
+\*------------------------------------*/
+/* 5.1. RESET GUTTER */
+.no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+}
+.no-gutter > [class*='col-'] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* 5.2. BACKGROUND IMAGE */
+.bg-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bg-img:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(34, 34, 34, 0.8);
+}
+
+/* 5.3. BORDER NONE */
+.bd-none {
+    border: none !important;
+}
