@@ -17189,6 +17189,59 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/_core/_app-services/balance.service.ts":
+/*!********************************************************!*\
+  !*** ./src/app/_core/_app-services/balance.service.ts ***!
+  \********************************************************/
+/*! exports provided: BalanceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BalanceService", function() { return BalanceService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _rest_api_rest_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../rest-api/rest-api */ "./src/app/_core/rest-api/rest-api.ts");
+/* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/internal/operators */ "./node_modules/rxjs/internal/operators/index.js");
+/* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var BalanceService = /** @class */ (function () {
+    function BalanceService(http) {
+        this.http = http;
+    }
+    BalanceService.prototype.get = function () {
+        var _this = this;
+        if (this.balance) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["of"])(this.balance);
+        }
+        return this.http.get(_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_2__["GET_BALANCE"])
+            .pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (balance) { return _this.balance = balance; }));
+    };
+    BalanceService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], BalanceService);
+    return BalanceService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_core/auth/add-token.interceptor.ts":
 /*!*****************************************************!*\
   !*** ./src/app/_core/auth/add-token.interceptor.ts ***!
@@ -17488,12 +17541,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rest_api_rest_api_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rest-api/rest-api.module */ "./src/app/_core/rest-api/rest-api.module.ts");
 /* harmony import */ var _auth_auth_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth/auth.module */ "./src/app/_core/auth/auth.module.ts");
 /* harmony import */ var _broadcast_broadcast_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./broadcast/broadcast.module */ "./src/app/_core/broadcast/broadcast.module.ts");
+/* harmony import */ var _app_services_balance_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_app-services/balance.service */ "./src/app/_core/_app-services/balance.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -17508,7 +17563,8 @@ var CoreModule = /** @class */ (function () {
                 _auth_auth_module__WEBPACK_IMPORTED_MODULE_2__["AuthModule"],
                 _broadcast_broadcast_module__WEBPACK_IMPORTED_MODULE_3__["BroadcastModule"],
                 _auth_auth_module__WEBPACK_IMPORTED_MODULE_2__["AuthModule"]
-            ]
+            ],
+            providers: [_app_services_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"]]
         })
     ], CoreModule);
     return CoreModule;
@@ -17953,6 +18009,40 @@ var NprogressHandlerService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/_core/rest-api/mock sync recursive ^.*balance\\.json$":
+/*!************************************************************!*\
+  !*** ./src/app/_core/rest-api/mock sync ^.*balance\.json$ ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./json/balance.json": "./src/app/_core/rest-api/mock/json/balance.json"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) { // check for number or string
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return id;
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./src/app/_core/rest-api/mock sync recursive ^.*balance\\.json$";
+
+/***/ }),
+
 /***/ "./src/app/_core/rest-api/mock sync recursive ^.*basic\\.json$":
 /*!**********************************************************!*\
   !*** ./src/app/_core/rest-api/mock sync ^.*basic\.json$ ***!
@@ -18226,6 +18316,17 @@ webpackContext.id = "./src/app/_core/rest-api/mock sync recursive ^.*xtrd_servic
 
 /***/ }),
 
+/***/ "./src/app/_core/rest-api/mock/json/balance.json":
+/*!*******************************************************!*\
+  !*** ./src/app/_core/rest-api/mock/json/balance.json ***!
+  \*******************************************************/
+/*! exports provided: balance, default */
+/***/ (function(module) {
+
+module.exports = {"balance":12340};
+
+/***/ }),
+
 /***/ "./src/app/_core/rest-api/mock/json/basic.json":
 /*!*****************************************************!*\
   !*** ./src/app/_core/rest-api/mock/json/basic.json ***!
@@ -18299,7 +18400,7 @@ module.exports = [2,4,8,9,14];
 /*! exports provided: 0, 1, 2, 3, default */
 /***/ (function(module) {
 
-module.exports = [{"id":"100","date":"20180610","type":"deposit","amount":10000000,"exchange":"Binance","instruments":400,"price":1000},{"id":"102","date":"20180611","type_O":"201806","type":"Payment for June, 2018","amount":10000,"exchange":"OKEx","instruments":100,"price":5000},{"id":"121","date":"20180611","type_O":"201807","type":"Payment for July, 2018","amount":10000,"exchange":"Gemini","instruments":12,"price":2000},{"id":"150","date":"20180714","type":"withdrawal","amount":1000000,"exchange":"HitBTC","instruments":100,"price":500}];
+module.exports = [{"id":100,"date":"20180610","type":"deposit","amount":10000000,"exchange":"Binance","instruments":400,"price":1000},{"id":102,"date":"20180611","type_O":"201806","type":"Payment for June, 2018","amount":10000,"exchange":"OKEx","instruments":100,"price":5000},{"id":121,"date":"20180611","type_O":"201807","type":"Payment for July, 2018","amount":10000,"exchange":"Gemini","instruments":12,"price":2000},{"id":150,"date":"20180714","type":"withdrawal","amount":1000000,"exchange":"HitBTC","instruments":100,"price":500}];
 
 /***/ }),
 
@@ -18338,6 +18439,7 @@ var mockResponseMap = (_a = {},
     _a[_rest_api__WEBPACK_IMPORTED_MODULE_0__["GET_XTRD_SERVICES"]] = __webpack_require__("./src/app/_core/rest-api/mock sync recursive ^.*xtrd_services\\.json$")(JSON_FOLDER + "xtrd_services.json"),
     _a[_rest_api__WEBPACK_IMPORTED_MODULE_0__["GET_TRANSACTIONS"]] = __webpack_require__("./src/app/_core/rest-api/mock sync recursive ^.*transactions\\.json$")(JSON_FOLDER + "transactions.json"),
     _a[_rest_api__WEBPACK_IMPORTED_MODULE_0__["SAVE_MARKET_DATA_OPTIONS"]] = { "ok": true },
+    _a[_rest_api__WEBPACK_IMPORTED_MODULE_0__["GET_BALANCE"]] = __webpack_require__("./src/app/_core/rest-api/mock sync recursive ^.*balance\\.json$")(JSON_FOLDER + "balance.json"),
     _a);
 
 
@@ -18500,7 +18602,7 @@ var RestApiModule = /** @class */ (function () {
                      useClass: MockInterceptor,
                      multi: true,
                    },*/
-                _loading_indicator_nprogress_handler_service__WEBPACK_IMPORTED_MODULE_5__["NprogressHandlerService"]
+                _loading_indicator_nprogress_handler_service__WEBPACK_IMPORTED_MODULE_5__["NprogressHandlerService"],
             ]
         })
     ], RestApiModule);
@@ -18515,7 +18617,7 @@ var RestApiModule = /** @class */ (function () {
 /*!********************************************!*\
   !*** ./src/app/_core/rest-api/rest-api.ts ***!
   \********************************************/
-/*! exports provided: GET_BASIC_METRICS, GET_MARKETS, LOGIN, LOGOUT, GET_XTRD_SERVICES, GET_TRANSACTIONS, GET_EXCHANGES, GET_SELECTED_EXCHANGES, SAVE_MARKET_DATA_OPTIONS */
+/*! exports provided: GET_BASIC_METRICS, GET_MARKETS, LOGIN, LOGOUT, GET_XTRD_SERVICES, GET_TRANSACTIONS, GET_EXCHANGES, GET_SELECTED_EXCHANGES, GET_BALANCE, SAVE_MARKET_DATA_OPTIONS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18528,6 +18630,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TRANSACTIONS", function() { return GET_TRANSACTIONS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_EXCHANGES", function() { return GET_EXCHANGES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_SELECTED_EXCHANGES", function() { return GET_SELECTED_EXCHANGES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_BALANCE", function() { return GET_BALANCE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_MARKET_DATA_OPTIONS", function() { return SAVE_MARKET_DATA_OPTIONS; });
 var GET_BASIC_METRICS = 'explorer/xtrd/basic';
 var GET_MARKETS = 'explorer/xtrd/markets';
@@ -18538,6 +18641,7 @@ var GET_XTRD_SERVICES = 'xtrd_services';
 var GET_TRANSACTIONS = 'transactions';
 var GET_EXCHANGES = 'exchanges';
 var GET_SELECTED_EXCHANGES = 'selected_exchanges';
+var GET_BALANCE = 'balance';
 var SAVE_MARKET_DATA_OPTIONS = 'save_market_data_options';
 
 
@@ -18570,45 +18674,10 @@ var RestBaseInterceptor = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/_core/rest-api/smart-resolver/resolved-data-parser.ts":
-/*!***********************************************************************!*\
-  !*** ./src/app/_core/rest-api/smart-resolver/resolved-data-parser.ts ***!
-  \***********************************************************************/
-/*! exports provided: ResolvedDataParser */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResolvedDataParser", function() { return ResolvedDataParser; });
-// use this class to extend a component or its service to get resolved data by router.
-// objToAssign is a component instantiation.
-// provide objToAssign if a service extends the class.
-// if a component extends the class omit it.
-var ResolvedDataParser = /** @class */ (function () {
-    function ResolvedDataParser() {
-    }
-    ResolvedDataParser.prototype.parseResolvedData = function (route, objToAssign) {
-        var resolvedData = route.snapshot.data['resolvedData'];
-        var keys = Object.keys(resolvedData);
-        if (!objToAssign) {
-            objToAssign = this;
-        }
-        for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
-            var k = keys_1[_i];
-            objToAssign[k] = resolvedData[k];
-        }
-    };
-    return ResolvedDataParser;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/_core/rest-api/smart-resolver/smart-resolver.ts":
-/*!*****************************************************************!*\
-  !*** ./src/app/_core/rest-api/smart-resolver/smart-resolver.ts ***!
-  \*****************************************************************/
+/***/ "./src/app/_core/rest-api/smart-resolver.ts":
+/*!**************************************************!*\
+  !*** ./src/app/_core/rest-api/smart-resolver.ts ***!
+  \**************************************************/
 /*! exports provided: SmartResolver */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -18628,7 +18697,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-///<reference path="../../../../../node_modules/rxjs/internal/operators/catchError.d.ts"/>
+///<reference path="../../../../node_modules/rxjs/internal/operators/catchError.d.ts"/>
 
 
 
@@ -18655,7 +18724,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 *
 *    OR use
 *
-*    this.parseResolvedData(route);
+*    this.getData(route);
 *
 * */
 var SmartResolver = /** @class */ (function () {
@@ -18668,6 +18737,10 @@ var SmartResolver = /** @class */ (function () {
         var reqs = [];
         for (var uKey in urls) {
             var reqUrl = urls[uKey];
+            if (typeof reqUrl == 'function') {
+                reqs.push(reqUrl());
+                continue;
+            }
             for (var pKey in params) {
                 reqUrl = reqUrl.replace(':' + pKey, params[pKey]);
             }
@@ -18746,110 +18819,6 @@ var LogoutButtonComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/_sa-handler/my-sa-widget.directive.ts":
-/*!*******************************************************!*\
-  !*** ./src/app/_sa-handler/my-sa-widget.directive.ts ***!
-  \*******************************************************/
-/*! exports provided: MySaWidgetDirective */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MySaWidgetDirective", function() { return MySaWidgetDirective; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _my_smartadmin_shared_widgets_widget_widget_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../my-smartadmin/shared/widgets/widget/widget.component */ "./src/my-smartadmin/shared/widgets/widget/widget.component.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-// Fits sa-widget to required look:
-// 1. no control buttons except minification
-// 2. dark widget header
-var MySaWidgetDirective = /** @class */ (function () {
-    function MySaWidgetDirective(widget, elm, renderer) {
-        widget.colorbutton = false;
-        widget.editbutton = false;
-        widget.custombutton = false;
-        widget.deletebutton = false;
-        widget.fullscreenbutton = false;
-        renderer.addClass(elm.nativeElement, 'jarviswidget-color-blueDark');
-    }
-    MySaWidgetDirective = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"])({ selector: '[my-sa-widget]' }),
-        __metadata("design:paramtypes", [_my_smartadmin_shared_widgets_widget_widget_component__WEBPACK_IMPORTED_MODULE_1__["WidgetComponent"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"]])
-    ], MySaWidgetDirective);
-    return MySaWidgetDirective;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/_sa-handler/my-smartadmin-handler.module.ts":
-/*!*************************************************************!*\
-  !*** ./src/app/_sa-handler/my-smartadmin-handler.module.ts ***!
-  \*************************************************************/
-/*! exports provided: MySmartadminHandlerModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MySmartadminHandlerModule", function() { return MySmartadminHandlerModule; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _navigation_content_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navigation-content.component */ "./src/app/_sa-handler/navigation-content.component.ts");
-/* harmony import */ var _my_sa_widget_directive__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./my-sa-widget.directive */ "./src/app/_sa-handler/my-sa-widget.directive.ts");
-/* harmony import */ var _logout_button_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./logout-button.component */ "./src/app/_sa-handler/logout-button.component.ts");
-/* harmony import */ var _ribbon_content_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ribbon-content.component */ "./src/app/_sa-handler/ribbon-content.component.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-// Note: include this shared in any SmartAdmin module to declare its components.
-var MySmartadminHandlerModule = /** @class */ (function () {
-    function MySmartadminHandlerModule() {
-    }
-    MySmartadminHandlerModule = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]
-            ],
-            declarations: [
-                _navigation_content_component__WEBPACK_IMPORTED_MODULE_2__["NavigationContentComponent"],
-                _ribbon_content_component__WEBPACK_IMPORTED_MODULE_5__["RibbonContentComponent"],
-                _my_sa_widget_directive__WEBPACK_IMPORTED_MODULE_3__["MySaWidgetDirective"],
-                _logout_button_component__WEBPACK_IMPORTED_MODULE_4__["LogoutButtonComponent"]
-            ],
-            exports: [
-                _navigation_content_component__WEBPACK_IMPORTED_MODULE_2__["NavigationContentComponent"],
-                _ribbon_content_component__WEBPACK_IMPORTED_MODULE_5__["RibbonContentComponent"],
-                _my_sa_widget_directive__WEBPACK_IMPORTED_MODULE_3__["MySaWidgetDirective"],
-                _logout_button_component__WEBPACK_IMPORTED_MODULE_4__["LogoutButtonComponent"]
-            ]
-        })
-    ], MySmartadminHandlerModule);
-    return MySmartadminHandlerModule;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/_sa-handler/navigation-content.component.ts":
 /*!*************************************************************!*\
   !*** ./src/app/_sa-handler/navigation-content.component.ts ***!
@@ -18895,6 +18864,58 @@ var NavigationContentComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RibbonContentComponent", function() { return RibbonContentComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _core_app_services_balance_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_core/_app-services/balance.service */ "./src/app/_core/_app-services/balance.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var RibbonContentComponent = /** @class */ (function () {
+    function RibbonContentComponent(balanceServ) {
+        this.balanceServ = balanceServ;
+    }
+    RibbonContentComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.balanceServ.get()
+            .subscribe(function (res) { return _this.balance = res.balance; });
+    };
+    RibbonContentComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: '[ribbon-content]',
+            styles: ['h5 {margin: 0; padding: 7px;}'],
+            template: "\n    <h5 class=\"text-right\">\n      balance: {{balance}}&nbsp;XTRD\n    </h5>",
+        }),
+        __metadata("design:paramtypes", [_core_app_services_balance_service__WEBPACK_IMPORTED_MODULE_1__["BalanceService"]])
+    ], RibbonContentComponent);
+    return RibbonContentComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_sa-handler/smartadmin-handler.module.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/_sa-handler/smartadmin-handler.module.ts ***!
+  \**********************************************************/
+/*! exports provided: SmartadminHandlerModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmartadminHandlerModule", function() { return SmartadminHandlerModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _navigation_content_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navigation-content.component */ "./src/app/_sa-handler/navigation-content.component.ts");
+/* harmony import */ var _widget_styling_directive__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./widget-styling.directive */ "./src/app/_sa-handler/widget-styling.directive.ts");
+/* harmony import */ var _logout_button_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./logout-button.component */ "./src/app/_sa-handler/logout-button.component.ts");
+/* harmony import */ var _ribbon_content_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ribbon-content.component */ "./src/app/_sa-handler/ribbon-content.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18902,18 +18923,81 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var RibbonContentComponent = /** @class */ (function () {
-    function RibbonContentComponent() {
-        this.balance = 1250;
+
+
+
+
+
+// Note: include this shared in any SmartAdmin module to declare its components.
+var SmartadminHandlerModule = /** @class */ (function () {
+    function SmartadminHandlerModule() {
     }
-    RibbonContentComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: '[ribbon-content]',
-            styles: ['h5 {margin: 0; padding: 7px;}'],
-            template: "\n    <h5 class=\"text-right\">\n      balance: {{balance}}&nbsp;XTRD\n    </h5>",
+    SmartadminHandlerModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]
+            ],
+            declarations: [
+                _navigation_content_component__WEBPACK_IMPORTED_MODULE_2__["NavigationContentComponent"],
+                _ribbon_content_component__WEBPACK_IMPORTED_MODULE_5__["RibbonContentComponent"],
+                _widget_styling_directive__WEBPACK_IMPORTED_MODULE_3__["WidgetStylingDirective"],
+                _logout_button_component__WEBPACK_IMPORTED_MODULE_4__["LogoutButtonComponent"]
+            ],
+            exports: [
+                _navigation_content_component__WEBPACK_IMPORTED_MODULE_2__["NavigationContentComponent"],
+                _ribbon_content_component__WEBPACK_IMPORTED_MODULE_5__["RibbonContentComponent"],
+                _widget_styling_directive__WEBPACK_IMPORTED_MODULE_3__["WidgetStylingDirective"],
+                _logout_button_component__WEBPACK_IMPORTED_MODULE_4__["LogoutButtonComponent"]
+            ]
         })
-    ], RibbonContentComponent);
-    return RibbonContentComponent;
+    ], SmartadminHandlerModule);
+    return SmartadminHandlerModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_sa-handler/widget-styling.directive.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/_sa-handler/widget-styling.directive.ts ***!
+  \*********************************************************/
+/*! exports provided: WidgetStylingDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WidgetStylingDirective", function() { return WidgetStylingDirective; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _my_smartadmin_shared_widgets_widget_widget_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../my-smartadmin/shared/widgets/widget/widget.component */ "./src/my-smartadmin/shared/widgets/widget/widget.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+// Fits sa-widget to required look:
+// 1. no control buttons except minification
+// 2. dark widget header
+var WidgetStylingDirective = /** @class */ (function () {
+    function WidgetStylingDirective(widget, elm, renderer) {
+        widget.colorbutton = false;
+        widget.editbutton = false;
+        widget.custombutton = false;
+        widget.deletebutton = false;
+        widget.fullscreenbutton = false;
+        renderer.addClass(elm.nativeElement, 'jarviswidget-color-blueDark');
+    }
+    WidgetStylingDirective = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"])({ selector: '[sa-widget-styling]' }),
+        __metadata("design:paramtypes", [_my_smartadmin_shared_widgets_widget_widget_component__WEBPACK_IMPORTED_MODULE_1__["WidgetComponent"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"]])
+    ], WidgetStylingDirective);
+    return WidgetStylingDirective;
 }());
 
 
@@ -18993,6 +19077,227 @@ var Alert = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/_shared/confirm-popover/confirm-popover.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/_shared/confirm-popover/confirm-popover.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: ConfirmPopoverComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmPopoverComponent", function() { return ConfirmPopoverComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ConfirmPopoverComponent = /** @class */ (function () {
+    function ConfirmPopoverComponent() {
+    }
+    ConfirmPopoverComponent.prototype.result = function (r) {
+        this.callback(r);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('template'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"])
+    ], ConfirmPopoverComponent.prototype, "confirmTemplate", void 0);
+    ConfirmPopoverComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            template: "\n    <ng-template #template>\n      <div class=\"modal-body\">\n        <i class=\"fa fa-2x fa-pull-left fa-exclamation-triangle text-danger\" data-fa-transform=\"up-2\"></i>\n        {{ confirm }}\n      </div>\n      <div class=\"modal-footer\">\n        <button (click)=\"result(false)\" type=\"button\" class=\"btn btn-default btn-sm\" data-dismiss=\"modal\">No</button>\n        <button (click)=\"result(true)\" type=\"button\" class=\"btn btn-danger btn-sm\">Yes</button>\n      </div>\n    </ng-template>\n  "
+        })
+    ], ConfirmPopoverComponent);
+    return ConfirmPopoverComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/confirm-popover/confirm-popover.directive.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/_shared/confirm-popover/confirm-popover.directive.ts ***!
+  \**********************************************************************/
+/*! exports provided: ConfirmDilogDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmDilogDirective", function() { return ConfirmDilogDirective; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/index.js");
+/* harmony import */ var _confirm_popover_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confirm-popover.component */ "./src/app/_shared/confirm-popover/confirm-popover.component.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ConfirmDilogDirective = /** @class */ (function (_super) {
+    __extends(ConfirmDilogDirective, _super);
+    function ConfirmDilogDirective(elementRef, renderer, viewContainerRef, config, cis, resolver) {
+        var _this = _super.call(this, elementRef, renderer, viewContainerRef, config, cis) || this;
+        _this.viewContainerRef = viewContainerRef;
+        _this.resolver = resolver;
+        _this.nativeElement = null;
+        _this.isActive = false;
+        _this.clickEvent = null;
+        _this.nativeElement = elementRef.nativeElement;
+        _this.initClickInterrupter();
+        return _this;
+    }
+    Object.defineProperty(ConfirmDilogDirective.prototype, "isHostHidden", {
+        // Note: optional parameter which helps to hide confirmation
+        // when host is a popover and can be closed by outside click.
+        // Use (onShowen) and (onHidden) which ngx provides.
+        set: function (value) {
+            if (value) {
+                this.hide();
+                this._reset();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ConfirmDilogDirective.prototype.ngOnInit = function () {
+        this.initConfirmComponent();
+        this.hide();
+    };
+    ConfirmDilogDirective.prototype.initClickInterrupter = function () {
+        var _this = this;
+        var elm = this.nativeElement;
+        elm.parentNode
+            .addEventListener('click', function (e) {
+            if (!_this.clickEvent || isSecondUserClick(e)) {
+                e.stopPropagation();
+            }
+            if (_this.isActive) {
+                return;
+            }
+            _this.show();
+            _this.clickEvent = e;
+            _this.isActive = true;
+        }, true);
+        var isSecondUserClick = function (e) {
+            return _this.clickEvent && elm.isSameNode(e.target) && _this.clickEvent.timeStamp !== e.timeStamp;
+        };
+    };
+    ConfirmDilogDirective.prototype.onConfirmationResult = function (wasConfirmed) {
+        if (wasConfirmed) {
+            this.nativeElement.dispatchEvent(this.clickEvent);
+        }
+        this._reset();
+    };
+    ConfirmDilogDirective.prototype._reset = function () {
+        this.clickEvent = null;
+        this.isActive = false;
+    };
+    ConfirmDilogDirective.prototype.initConfirmComponent = function () {
+        var _this = this;
+        var componentFactory = this.resolver.resolveComponentFactory(_confirm_popover_component__WEBPACK_IMPORTED_MODULE_2__["ConfirmPopoverComponent"]);
+        var componentRef = this.viewContainerRef.createComponent(componentFactory);
+        var componentInstance = componentRef.instance;
+        componentInstance.confirm = this.confirm;
+        this.popover = componentInstance.confirmTemplate;
+        this.containerClass = 'modal-sm'; // make the popup wider with help of bootstrap's class
+        componentInstance.callback = function (wasConfirmed) {
+            _this.onConfirmationResult(wasConfirmed);
+            _this.hide();
+        };
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('confirm'),
+        __metadata("design:type", String)
+    ], ConfirmDilogDirective.prototype, "confirm", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])('isHostHidden'),
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [Boolean])
+    ], ConfirmDilogDirective.prototype, "isHostHidden", null);
+    ConfirmDilogDirective = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"])({ selector: '[confirm]' }),
+        __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"],
+            ngx_bootstrap__WEBPACK_IMPORTED_MODULE_1__["PopoverConfig"],
+            ngx_bootstrap__WEBPACK_IMPORTED_MODULE_1__["ComponentLoaderFactory"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ComponentFactoryResolver"]])
+    ], ConfirmDilogDirective);
+    return ConfirmDilogDirective;
+}(ngx_bootstrap__WEBPACK_IMPORTED_MODULE_1__["PopoverDirective"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/_shared/confirm-popover/confirm-popover.module.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/_shared/confirm-popover/confirm-popover.module.ts ***!
+  \*******************************************************************/
+/*! exports provided: ConfirmPopoverModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmPopoverModule", function() { return ConfirmPopoverModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _confirm_popover_directive__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./confirm-popover.directive */ "./src/app/_shared/confirm-popover/confirm-popover.directive.ts");
+/* harmony import */ var _confirm_popover_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confirm-popover.component */ "./src/app/_shared/confirm-popover/confirm-popover.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ConfirmPopoverModule = /** @class */ (function () {
+    function ConfirmPopoverModule() {
+    }
+    ConfirmPopoverModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            exports: [
+                _confirm_popover_directive__WEBPACK_IMPORTED_MODULE_1__["ConfirmDilogDirective"]
+            ],
+            declarations: [
+                _confirm_popover_directive__WEBPACK_IMPORTED_MODULE_1__["ConfirmDilogDirective"],
+                _confirm_popover_component__WEBPACK_IMPORTED_MODULE_2__["ConfirmPopoverComponent"]
+            ],
+            entryComponents: [
+                _confirm_popover_component__WEBPACK_IMPORTED_MODULE_2__["ConfirmPopoverComponent"]
+            ]
+        })
+    ], ConfirmPopoverModule);
+    return ConfirmPopoverModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_shared/shared.module.ts":
 /*!******************************************!*\
   !*** ./src/app/_shared/shared.module.ts ***!
@@ -19005,7 +19310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return SharedModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_sa-handler/my-smartadmin-handler.module */ "./src/app/_sa-handler/my-smartadmin-handler.module.ts");
+/* harmony import */ var _confirm_popover_confirm_popover_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./confirm-popover/confirm-popover.module */ "./src/app/_shared/confirm-popover/confirm-popover.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19014,7 +19319,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 };
 
 
-// import {MySmartAdminModule} from "../../my-smartadmin/my-smartadmin.module";
 
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
@@ -19023,10 +19327,10 @@ var SharedModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
-                _sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_2__["MySmartadminHandlerModule"]
+                _confirm_popover_confirm_popover_module__WEBPACK_IMPORTED_MODULE_2__["ConfirmPopoverModule"]
             ],
             exports: [
-                _sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_2__["MySmartadminHandlerModule"],
+                _confirm_popover_confirm_popover_module__WEBPACK_IMPORTED_MODULE_2__["ConfirmPopoverModule"]
             ]
         })
     ], SharedModule);
@@ -19131,7 +19435,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _my_smartadmin_my_smartadmin_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../my-smartadmin/my-smartadmin.module */ "./src/my-smartadmin/my-smartadmin.module.ts");
-/* harmony import */ var _core_rest_api_smart_resolver_smart_resolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_core/rest-api/smart-resolver/smart-resolver */ "./src/app/_core/rest-api/smart-resolver/smart-resolver.ts");
+/* harmony import */ var _core_rest_api_smart_resolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_core/rest-api/smart-resolver */ "./src/app/_core/rest-api/smart-resolver.ts");
 /* harmony import */ var _market_data_market_data_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./market-data/market-data.component */ "./src/app/market-data/market-data.component.ts");
 /* harmony import */ var _news_feed_news_feed__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./news-feed/news-feed */ "./src/app/news-feed/news-feed.ts");
 /* harmony import */ var _co_location_co_location_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./co-location/co-location.component */ "./src/app/co-location/co-location.component.ts");
@@ -19143,12 +19447,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard_xtrd_services_xtrd_services_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dashboard/xtrd-services/xtrd-services.component */ "./src/app/dashboard/xtrd-services/xtrd-services.component.ts");
 /* harmony import */ var _transactions_transactions_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./transactions/transactions.component */ "./src/app/transactions/transactions.component.ts");
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_sa-handler/smartadmin-handler.module */ "./src/app/_sa-handler/smartadmin-handler.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -19195,16 +19501,18 @@ var AppModule = /** @class */ (function () {
                 _core_core_module__WEBPACK_IMPORTED_MODULE_15__["CoreModule"],
                 // 2.2 shared
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"],
-                // 2.3 MySmartAdmin
+                // 2.3 controll over Smartadmin
+                _sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_19__["SmartadminHandlerModule"],
+                // 2.4 MySmartAdmin
                 _my_smartadmin_my_smartadmin_module__WEBPACK_IMPORTED_MODULE_6__["MySmartAdminModule"],
-                // 2.3 login pages module
+                // 2.5 login pages module
                 _login_login_module__WEBPACK_IMPORTED_MODULE_13__["LoginModule"].forRoot(),
-                // 2.4 routing
+                // 2.6 routing
                 _app_routing__WEBPACK_IMPORTED_MODULE_4__["routing"]
             ],
             exports: [],
             providers: [
-                _core_rest_api_smart_resolver_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"]
+                _core_rest_api_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
@@ -19234,7 +19542,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _co_location_co_location_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./co-location/co-location.component */ "./src/app/co-location/co-location.component.ts");
 /* harmony import */ var _user_user_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user/user.component */ "./src/app/user/user.component.ts");
 /* harmony import */ var _execution_execution_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./execution/execution.component */ "./src/app/execution/execution.component.ts");
-/* harmony import */ var _core_rest_api_smart_resolver_smart_resolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_core/rest-api/smart-resolver/smart-resolver */ "./src/app/_core/rest-api/smart-resolver/smart-resolver.ts");
+/* harmony import */ var _core_rest_api_smart_resolver__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_core/rest-api/smart-resolver */ "./src/app/_core/rest-api/smart-resolver.ts");
 /* harmony import */ var _core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_core/rest-api/rest-api */ "./src/app/_core/rest-api/rest-api.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _my_smartadmin_shared_layout_app_layouts_auth_layout_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../my-smartadmin/shared/layout/app-layouts/auth-layout.component */ "./src/my-smartadmin/shared/layout/app-layouts/auth-layout.component.ts");
@@ -19268,7 +19576,7 @@ var routes = [
             {
                 path: 'dashboard',
                 component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_13__["DashboardComponent"],
-                resolve: { resolvedData: _core_rest_api_smart_resolver_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"] },
+                resolve: { resolvedData: _core_rest_api_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"] },
                 data: {
                     toResolve: {
                         xtrdServices: _core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_8__["GET_XTRD_SERVICES"],
@@ -19279,7 +19587,7 @@ var routes = [
             {
                 path: 'market-data',
                 component: _market_data_market_data_component__WEBPACK_IMPORTED_MODULE_2__["MarketDataComponent"],
-                resolve: { resolvedData: _core_rest_api_smart_resolver_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"] },
+                resolve: { resolvedData: _core_rest_api_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"] },
                 data: {
                     toResolve: {
                         exchanges: _core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_8__["GET_EXCHANGES"],
@@ -19302,7 +19610,7 @@ var routes = [
             {
                 path: 'transactions',
                 component: _transactions_transactions_component__WEBPACK_IMPORTED_MODULE_12__["TransactionsComponent"],
-                resolve: { resolvedData: _core_rest_api_smart_resolver_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"] },
+                resolve: { resolvedData: _core_rest_api_smart_resolver__WEBPACK_IMPORTED_MODULE_7__["SmartResolver"] },
                 data: {
                     toResolve: {
                         transactions: _core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_8__["GET_TRANSACTIONS"],
@@ -19377,7 +19685,7 @@ var CoLocationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--\r\n<div class=\"row\">\r\n  <div class=\"col-md-5\">\r\n    <xtd-serevices></xtd-serevices>\r\n  </div>\r\n  <div class=\"col-md-7\">\r\n    <xtd-transactions></xtd-transactions>\r\n  </div>\r\n</div>-->\r\n\r\n<sa-widgets-grid>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-md-5\">\r\n      <!-- 1. XTRD serevices -->\r\n      <sa-widget my-sa-widget>\r\n        <header>\r\n          <span class=\"widget-icon\"> <i class=\"fa fa-gear\"></i> </span>\r\n          <h2>Serevices</h2>\r\n        </header>\r\n        <div>\r\n          <div>\r\n            <xtd-serevices></xtd-serevices>\r\n          </div>\r\n        </div>\r\n      </sa-widget>\r\n    </div>\r\n\r\n    <!-- 2. transactions -->\r\n    <div class=\"col-md-7\">\r\n      <sa-widget my-sa-widget>\r\n        <header>\r\n          <span class=\"widget-icon\"> <i class=\"fa fa-gear\"></i> </span>\r\n          <h2>Transactions</h2>\r\n        </header>\r\n        <div>\r\n          <div>\r\n            <xtd-transactions [isPage]=\"false\"></xtd-transactions>\r\n          </div>\r\n        </div>\r\n      </sa-widget>\r\n    </div>\r\n  </div>\r\n\r\n</sa-widgets-grid>"
+module.exports = "<!--\r\n<div class=\"row\">\r\n  <div class=\"col-md-5\">\r\n    <xtd-serevices></xtd-serevices>\r\n  </div>\r\n  <div class=\"col-md-7\">\r\n    <xtd-transactions></xtd-transactions>\r\n  </div>\r\n</div>-->\r\n\r\n<sa-widgets-grid>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-md-5\">\r\n      <!-- 1. XTRD serevices -->\r\n      <sa-widget sa-widget-styling>\r\n        <header>\r\n          <span class=\"widget-icon\"> <i class=\"fa fa-gear\"></i> </span>\r\n          <h2>Serevices</h2>\r\n        </header>\r\n        <div>\r\n          <div>\r\n            <xtd-serevices></xtd-serevices>\r\n          </div>\r\n        </div>\r\n      </sa-widget>\r\n    </div>\r\n\r\n    <!-- 2. transactions -->\r\n    <div class=\"col-md-7\">\r\n      <sa-widget sa-widget-styling>\r\n        <header>\r\n          <span class=\"widget-icon\"> <i class=\"fa fa-gear\"></i> </span>\r\n          <h2>Transactions</h2>\r\n        </header>\r\n        <div>\r\n          <div>\r\n            <xtd-transactions [isPage]=\"false\"></xtd-transactions>\r\n          </div>\r\n        </div>\r\n      </sa-widget>\r\n    </div>\r\n  </div>\r\n\r\n</sa-widgets-grid>"
 
 /***/ }),
 
@@ -19440,17 +19748,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "XtrdServicesComponent", function() { return XtrdServicesComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _core_rest_api_smart_resolver_resolved_data_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_core/rest-api/smart-resolver/resolved-data-parser */ "./src/app/_core/rest-api/smart-resolver/resolved-data-parser.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19462,15 +19759,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
-var XtrdServicesComponent = /** @class */ (function (_super) {
-    __extends(XtrdServicesComponent, _super);
+var XtrdServicesComponent = /** @class */ (function () {
     function XtrdServicesComponent(route) {
-        var _this = _super.call(this) || this;
         // TODO: add models & types
-        _this.xtrdServices = null;
-        _this.parseResolvedData(route);
-        return _this;
+        this.xtrdServices = null;
+        this.xtrdServices = route.snapshot.data['resolvedData']['xtrdServices'];
     }
     XtrdServicesComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -19480,7 +19773,7 @@ var XtrdServicesComponent = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
     ], XtrdServicesComponent);
     return XtrdServicesComponent;
-}(_core_rest_api_smart_resolver_resolved_data_parser__WEBPACK_IMPORTED_MODULE_2__["ResolvedDataParser"]));
+}());
 
 
 
@@ -19930,12 +20223,12 @@ var ExchangeUI = /** @class */ (function (_super) {
 }(_core_models_exchange__WEBPACK_IMPORTED_MODULE_3__["Exchange"]));
 var MarketDataComponent = /** @class */ (function () {
     function MarketDataComponent(route, marketDataService) {
-        var _this = this;
         this.marketDataService = marketDataService;
+        // private selectedExchanges: number[]; // used for initialization only!
         this.allowToSubmit = false;
-        this.marketDataService.parseResolvedData(route, this);
-        this.exchanges = this.exchanges.map(function (e) {
-            if (_this.selectedExchanges.indexOf(e.id) !== -1)
+        var _a = route.snapshot.data['resolvedData'], exchanges = _a.exchanges, selectedExchanges = _a.selectedExchanges;
+        this.exchanges = exchanges.map(function (e) {
+            if (selectedExchanges.indexOf(e.id) !== -1)
                 e.isSelected = true;
             return e;
         });
@@ -19979,19 +20272,8 @@ var MarketDataComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MarketDataService", function() { return MarketDataService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _core_rest_api_smart_resolver_resolved_data_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_core/rest-api/smart-resolver/resolved-data-parser */ "./src/app/_core/rest-api/smart-resolver/resolved-data-parser.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_core/rest-api/rest-api */ "./src/app/_core/rest-api/rest-api.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_core/rest-api/rest-api */ "./src/app/_core/rest-api/rest-api.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20004,24 +20286,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-var MarketDataService = /** @class */ (function (_super) {
-    __extends(MarketDataService, _super);
+var MarketDataService = /** @class */ (function () {
     function MarketDataService(http) {
-        var _this = _super.call(this) || this;
-        _this.http = http;
-        return _this;
+        this.http = http;
     }
     // number[] | string[]
     MarketDataService.prototype.saveMarketDataOptions = function (data) {
-        return this.http.put(_core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_3__["SAVE_MARKET_DATA_OPTIONS"], data);
+        return this.http.put(_core_rest_api_rest_api__WEBPACK_IMPORTED_MODULE_2__["SAVE_MARKET_DATA_OPTIONS"], data);
     };
     MarketDataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], MarketDataService);
     return MarketDataService;
-}(_core_rest_api_smart_resolver_resolved_data_parser__WEBPACK_IMPORTED_MODULE_1__["ResolvedDataParser"]));
+}());
 
 
 
@@ -20073,7 +20351,7 @@ var NewsFeedComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngTemplateOutlet=\"isPage ? transactionsPage : transactionTable\">\r\n</ng-container>\r\n\r\n<ng-template #transactionsPage>\r\n  <div class=\"well white\">\r\n    <fieldset>\r\n      <legend>\r\n        <i class=\"fa fa-lg fa-fw fa-arrow-circle-o-right\"></i>\r\n        &nbsp;Transactions\r\n      </legend>\r\n      <ng-container *ngTemplateOutlet=\"transactionTable\">\r\n      </ng-container>\r\n    </fieldset>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #transactionTable>\r\n  <table class=\"table table-bordered table-striped\">\r\n    <thead>\r\n    <tr>\r\n      <!-- TODO: add sort by columns -->\r\n      <!-- TODO: add/CHECK XTRD currency name where need -->\r\n      <th>ID</th>\r\n      <th>Date</th>\r\n      <th>Type</th>\r\n      <th>Amount</th>\r\n      <th>Exchange</th>\r\n      <th>Instruments</th>\r\n      <th>Price</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let t of transactions\">\r\n      <td class=\"text-center\">{{t.id}}</td>\r\n      <td class=\"text-center\">{{t.date | date}}</td>\r\n      <td>{{t.type}}</td>\r\n      <!-- TODO: convert to number with suffix -->\r\n      <td class=\"text-right\">{{t.amount | number}}&nbsp;XTRD</td>\r\n      <td>{{t.exchange}}</td>\r\n      <td class=\"text-right\">{{t.instruments}}</td>\r\n      <td class=\"text-right\">{{t.price}}&nbsp;XTRD</td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</ng-template>"
+module.exports = "<ng-container *ngTemplateOutlet=\"isPage ? transactionsPage : transactionTable\">\r\n</ng-container>\r\n\r\n<ng-template #transactionsPage>\r\n  <div class=\"well white\">\r\n    <fieldset>\r\n      <legend>\r\n        <i class=\"fa fa-lg fa-fw fa-arrow-circle-o-right\"></i>\r\n        &nbsp;Transactions\r\n      </legend>\r\n      <ng-container *ngTemplateOutlet=\"transactionTable\">\r\n      </ng-container>\r\n    </fieldset>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #transactionTable>\r\n  <table class=\"table table-bordered table-striped\">\r\n    <thead>\r\n    <tr>\r\n      <!-- TODO: add sort by columns -->\r\n      <!-- TODO: add/CHECK XTRD currency name where need -->\r\n\r\n      <!-- TODO: create directive for sortable TH -->\r\n      <!-- 1. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 0\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        ID\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 2. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 1\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        Date\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 3. -->\r\n      <th>Type</th>\r\n      <!-- 4. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 3\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        Amount\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 5. -->\r\n      <th>Exchange</th>\r\n      <!-- 6. -->\r\n      <th>Instruments</th>\r\n      <!-- 7. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 6\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        Price\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let t of sortTransactions(transactions)\">\r\n      <td class=\"text-center\">{{t.id}}</td>\r\n      <td class=\"text-center\">{{t.date | date}}</td>\r\n      <td>{{t.type}}</td>\r\n      <!-- TODO: convert to number with suffix -->\r\n      <td class=\"text-right\">{{t.amount | number}}&nbsp;XTRD</td>\r\n      <td>{{t.exchange}}</td>\r\n      <td class=\"text-right\">{{t.instruments}}</td>\r\n      <td class=\"text-right\">{{t.price}}&nbsp;XTRD</td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</ng-template>"
 
 /***/ }),
 
@@ -20088,19 +20366,8 @@ module.exports = "<ng-container *ngTemplateOutlet=\"isPage ? transactionsPage : 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TransactionsComponent", function() { return TransactionsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _core_rest_api_smart_resolver_resolved_data_parser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_core/rest-api/smart-resolver/resolved-data-parser */ "./src/app/_core/rest-api/smart-resolver/resolved-data-parser.ts");
-/* harmony import */ var _core_models_transaction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_core/models/transaction */ "./src/app/_core/models/transaction.ts");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+/* harmony import */ var _core_models_transaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_core/models/transaction */ "./src/app/_core/models/transaction.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20113,17 +20380,46 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-var TransactionsComponent = /** @class */ (function (_super) {
-    __extends(TransactionsComponent, _super);
+var TransactionsComponent = /** @class */ (function () {
     function TransactionsComponent(route) {
-        var _this = _super.call(this) || this;
-        _this.isPage = true;
-        _this.transactions = null;
-        _this.parseResolvedData(route);
-        _this.transactions = _this.transactions.map(function (t) { return new _core_models_transaction__WEBPACK_IMPORTED_MODULE_3__["Transaction"](t); });
-        return _this;
+        var _this = this;
+        this.isPage = true;
+        this.transactions = null;
+        this.sortOp = {
+            isAscending: true,
+            clmIdx: 0,
+        };
+        this.sortFun = function (a, b) {
+            var v1, v2;
+            var clmName = Object.keys(a)[_this.sortOp.clmIdx];
+            if (typeof a[clmName] === 'number') {
+                v1 = a[clmName];
+                v2 = b[clmName];
+            }
+            else if (a[clmName] instanceof Date) {
+                v1 = a[clmName].getTime();
+                v2 = b[clmName].getTime();
+            }
+            return ((_this.sortOp.isAscending ? 1 : -1) * (v1 - v2));
+        };
+        var transactions = route.snapshot.data['resolvedData'].transactions;
+        this.transactions = transactions.map(function (t) { return new _core_models_transaction__WEBPACK_IMPORTED_MODULE_1__["Transaction"](t); });
     }
+    TransactionsComponent.prototype.onSortByColumn = function (event) {
+        var idx = event.target.cellIndex;
+        if (this.sortOp.clmIdx == idx) {
+            this.sortOp.isAscending = !this.sortOp.isAscending;
+        }
+        else {
+            this.sortOp.clmIdx = idx;
+            this.sortOp.isAscending = true;
+        }
+    };
+    TransactionsComponent.prototype.sortTransactions = function () {
+        return this.transactions
+            .sort(this.sortFun);
+        // .sort((a: Note, b: Note) => (this.isAscending ? 1 : -1) * (a.dateObj.getTime() - b.dateObj.getTime()));
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
@@ -20133,10 +20429,10 @@ var TransactionsComponent = /** @class */ (function (_super) {
             selector: 'xtd-transactions',
             template: __webpack_require__(/*! ./transactions.component.html */ "./src/app/transactions/transactions.component.html")
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], TransactionsComponent);
     return TransactionsComponent;
-}(_core_rest_api_smart_resolver_resolved_data_parser__WEBPACK_IMPORTED_MODULE_2__["ResolvedDataParser"]));
+}());
 
 
 
@@ -20244,7 +20540,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_layout_layout_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shared/layout/layout.module */ "./src/my-smartadmin/shared/layout/layout.module.ts");
 /* harmony import */ var _shared_widgets_smartadmin_widgets_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shared/widgets/smartadmin-widgets.module */ "./src/my-smartadmin/shared/widgets/smartadmin-widgets.module.ts");
-/* harmony import */ var _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app/_sa-handler/my-smartadmin-handler.module */ "./src/app/_sa-handler/my-smartadmin-handler.module.ts");
+/* harmony import */ var _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app/_sa-handler/smartadmin-handler.module */ "./src/app/_sa-handler/smartadmin-handler.module.ts");
 /* harmony import */ var _shared_utils_utils_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/utils/utils.module */ "./src/my-smartadmin/shared/utils/utils.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -20269,7 +20565,7 @@ var MySmartAdminModule = /** @class */ (function () {
                 _shared_widgets_smartadmin_widgets_module__WEBPACK_IMPORTED_MODULE_2__["SmartadminWidgetsModule"],
                 // TreeViewModule, // use "my-sa-tree-view"
                 _shared_utils_utils_module__WEBPACK_IMPORTED_MODULE_4__["UtilsModule"].forRoot(),
-                _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_3__["MySmartadminHandlerModule"]
+                _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_3__["SmartadminHandlerModule"]
             ],
             exports: [
                 _shared_widgets_smartadmin_widgets_module__WEBPACK_IMPORTED_MODULE_2__["SmartadminWidgetsModule"]
@@ -20621,7 +20917,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _collapse_menu_collapse_menu_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./collapse-menu/collapse-menu.component */ "./src/my-smartadmin/shared/layout/header/collapse-menu/collapse-menu.component.ts");
 /* harmony import */ var _header_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header.component */ "./src/my-smartadmin/shared/layout/header/header.component.ts");
-/* harmony import */ var _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../app/_sa-handler/my-smartadmin-handler.module */ "./src/app/_sa-handler/my-smartadmin-handler.module.ts");
+/* harmony import */ var _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../app/_sa-handler/smartadmin-handler.module */ "./src/app/_sa-handler/smartadmin-handler.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20655,7 +20951,7 @@ var HeaderModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"],
                 // UtilsModule,
                 // PopoverModule,
-                _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_5__["MySmartadminHandlerModule"]
+                _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_5__["SmartadminHandlerModule"]
             ],
             declarations: [
                 _collapse_menu_collapse_menu_component__WEBPACK_IMPORTED_MODULE_3__["CollapseMenuComponent"],
@@ -20696,7 +20992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ribbon_route_breadcrumbs_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ribbon/route-breadcrumbs.component */ "./src/my-smartadmin/shared/layout/ribbon/route-breadcrumbs.component.ts");
 /* harmony import */ var _layout_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./layout.service */ "./src/my-smartadmin/shared/layout/layout.service.ts");
 /* harmony import */ var _app_layouts_auth_layout_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./app-layouts/auth-layout.component */ "./src/my-smartadmin/shared/layout/app-layouts/auth-layout.component.ts");
-/* harmony import */ var _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../app/_sa-handler/my-smartadmin-handler.module */ "./src/app/_sa-handler/my-smartadmin-handler.module.ts");
+/* harmony import */ var _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../app/_sa-handler/smartadmin-handler.module */ "./src/app/_sa-handler/smartadmin-handler.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20728,7 +21024,7 @@ var SmartadminLayoutModule = /** @class */ (function () {
                 _navigation_navigation_module__WEBPACK_IMPORTED_MODULE_5__["NavigationModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_9__["RouterModule"],
-                _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_13__["MySmartadminHandlerModule"]
+                _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_13__["SmartadminHandlerModule"]
             ],
             declarations: [
                 _footer_footer_component__WEBPACK_IMPORTED_MODULE_4__["FooterComponent"],
@@ -21056,7 +21352,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navigation_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navigation.component */ "./src/my-smartadmin/shared/layout/navigation/navigation.component.ts");
 /* harmony import */ var _smart_menu_directive__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./smart-menu.directive */ "./src/my-smartadmin/shared/layout/navigation/smart-menu.directive.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../app/_sa-handler/my-smartadmin-handler.module */ "./src/app/_sa-handler/my-smartadmin-handler.module.ts");
+/* harmony import */ var _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../app/_sa-handler/smartadmin-handler.module */ "./src/app/_sa-handler/smartadmin-handler.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -21085,7 +21381,7 @@ var NavigationModule = /** @class */ (function () {
                 // I18nModule,
                 //UserModule,
                 //ChatModule
-                _app_sa_handler_my_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_7__["MySmartadminHandlerModule"]
+                _app_sa_handler_smartadmin_handler_module__WEBPACK_IMPORTED_MODULE_7__["SmartadminHandlerModule"]
             ],
             declarations: [
                 _big_breadcrumbs_component__WEBPACK_IMPORTED_MODULE_2__["BigBreadcrumbsComponent"],
