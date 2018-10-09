@@ -20351,7 +20351,7 @@ var NewsFeedComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngTemplateOutlet=\"isPage ? transactionsPage : transactionTable\">\r\n</ng-container>\r\n\r\n<ng-template #transactionsPage>\r\n  <div class=\"well white\">\r\n    <fieldset>\r\n      <legend>\r\n        <i class=\"fa fa-lg fa-fw fa-arrow-circle-o-right\"></i>\r\n        &nbsp;Transactions\r\n      </legend>\r\n      <ng-container *ngTemplateOutlet=\"transactionTable\">\r\n      </ng-container>\r\n    </fieldset>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #transactionTable>\r\n  <table class=\"table table-bordered table-striped\">\r\n    <thead>\r\n    <tr>\r\n      <!-- TODO: add sort by columns -->\r\n      <!-- TODO: add/CHECK XTRD currency name where need -->\r\n\r\n      <!-- TODO: create directive for sortable TH -->\r\n      <!-- 1. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 0\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        ID\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 2. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 1\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        Date\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 3. -->\r\n      <th>Type</th>\r\n      <!-- 4. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 3\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        Amount\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 5. -->\r\n      <th>Exchange</th>\r\n      <!-- 6. -->\r\n      <th>Instruments</th>\r\n      <!-- 7. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 6\"\r\n          (click)=\"onSortByColumn($event)\">\r\n        Price\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let t of sortTransactions(transactions)\">\r\n      <td class=\"text-center\">{{t.id}}</td>\r\n      <td class=\"text-center\">{{t.date | date}}</td>\r\n      <td>{{t.type}}</td>\r\n      <!-- TODO: convert to number with suffix -->\r\n      <td class=\"text-right\">{{t.amount | number}}&nbsp;XTRD</td>\r\n      <td>{{t.exchange}}</td>\r\n      <td class=\"text-right\">{{t.instruments}}</td>\r\n      <td class=\"text-right\">{{t.price}}&nbsp;XTRD</td>\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</ng-template>"
+module.exports = "<ng-container *ngTemplateOutlet=\"isPage ? transactionsPage : transactionTable\">\r\n</ng-container>\r\n\r\n<ng-template #transactionsPage>\r\n  <div class=\"well white\">\r\n    <fieldset>\r\n      <legend>\r\n        <i class=\"fa fa-lg fa-fw fa-arrow-circle-o-right\"></i>\r\n        &nbsp;Transactions\r\n      </legend>\r\n      <ng-container *ngTemplateOutlet=\"transactionTable\">\r\n      </ng-container>\r\n    </fieldset>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #transactionTable>\r\n  <table class=\"table table-bordered table-striped\">\r\n    <thead>\r\n    <tr>\r\n      <!-- TODO: sort by columns. May be use column \"name\" instead of index? -->\r\n      <!-- TODO: add/CHECK XTRD currency name where need -->\r\n\r\n      <!-- TODO: create directive for sortable TH -->\r\n      <!-- 1. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmName === 'id'\"\r\n          (click)=\"onSortByColumn('id')\">\r\n        ID\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 2. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmName === 'date'\"\r\n          (click)=\"onSortByColumn('date')\">\r\n        Date\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!-- 3. -->\r\n      <th>Type</th>\r\n      <!-- 4. -->\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmName === 'amount'\"\r\n          (click)=\"onSortByColumn('amount')\">\r\n        Amount\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>\r\n      <!--&lt;!&ndash; 5. &ndash;&gt;\r\n      <th>Exchange</th>\r\n      &lt;!&ndash; 6. &ndash;&gt;\r\n      <th>Instruments</th>\r\n      &lt;!&ndash; 7. &ndash;&gt;\r\n      <th class=\"sort\"\r\n          [class.desc]=\"!sortOp.isAscending\"\r\n          [class.active]=\"sortOp.clmIdx === 'price'\"\r\n          (click)=\"onSortByColumn('price')\">\r\n        Price\r\n        <i class=\"fa fa-caret-up\"></i>\r\n        <i class=\"fa fa-caret-down\"></i>\r\n      </th>-->\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <tr *ngFor=\"let t of sortTransactions(transactions)\">\r\n      <td class=\"text-center\">{{t.id}}</td>\r\n      <td class=\"text-center\">{{t.date | date}}</td>\r\n      <td>{{t.type}}</td>\r\n      <!-- TODO: convert to number with suffix -->\r\n      <td class=\"text-right\">{{t.amount | number}}&nbsp;XTRD</td>\r\n<!--      <td>{{t.exchange}}</td>\r\n      <td class=\"text-right\">{{t.instruments}}</td>\r\n      <td class=\"text-right\">{{t.price}}&nbsp;XTRD</td>-->\r\n    </tr>\r\n    </tbody>\r\n  </table>\r\n</ng-template>"
 
 /***/ }),
 
@@ -20387,11 +20387,12 @@ var TransactionsComponent = /** @class */ (function () {
         this.transactions = null;
         this.sortOp = {
             isAscending: true,
-            clmIdx: 0,
+            // clmIdx: 0,
+            clmName: 'id'
         };
         this.sortFun = function (a, b) {
             var v1, v2;
-            var clmName = Object.keys(a)[_this.sortOp.clmIdx];
+            var clmName = _this.sortOp.clmName; // Object.keys(a)[this.sortOp.clmIdx];
             if (typeof a[clmName] === 'number') {
                 v1 = a[clmName];
                 v2 = b[clmName];
@@ -20405,20 +20406,28 @@ var TransactionsComponent = /** @class */ (function () {
         var transactions = route.snapshot.data['resolvedData'].transactions;
         this.transactions = transactions.map(function (t) { return new _core_models_transaction__WEBPACK_IMPORTED_MODULE_1__["Transaction"](t); });
     }
-    TransactionsComponent.prototype.onSortByColumn = function (event) {
-        var idx = event.target.cellIndex;
+    /*  onSortByColumn(event) {
+        const idx = event.target.cellIndex;
         if (this.sortOp.clmIdx == idx) {
+          this.sortOp.isAscending = !this.sortOp.isAscending;
+        }
+        else {
+          this.sortOp.clmIdx = idx;
+          this.sortOp.isAscending = true;
+        }
+      }*/
+    TransactionsComponent.prototype.onSortByColumn = function (clmName) {
+        if (this.sortOp.clmName == clmName) {
             this.sortOp.isAscending = !this.sortOp.isAscending;
         }
         else {
-            this.sortOp.clmIdx = idx;
+            this.sortOp.clmName = clmName;
             this.sortOp.isAscending = true;
         }
     };
     TransactionsComponent.prototype.sortTransactions = function () {
         return this.transactions
             .sort(this.sortFun);
-        // .sort((a: Note, b: Note) => (this.isAscending ? 1 : -1) * (a.dateObj.getTime() - b.dateObj.getTime()));
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
