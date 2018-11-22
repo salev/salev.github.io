@@ -2350,7 +2350,7 @@ var SmartResolver = /** @class */ (function () {
         var reqs;
         reqs = urls.map(function (u, idx) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(u)
-                .pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(100 * idx), Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (u) { return _this.http.get(u); }));
+                .pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(500 * idx), Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (u) { return _this.http.get(u); }));
         });
         return rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"].apply(void 0, reqs);
     };
