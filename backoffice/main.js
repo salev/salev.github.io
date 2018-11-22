@@ -2064,9 +2064,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../app.config */ "./src/app/app.config.ts");
 /* harmony import */ var _mock_response_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mock-response-map */ "./src/app/_core/rest-api/mock/mock-response-map.ts");
-/* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/internal/operators */ "./node_modules/rxjs/internal/operators/index.js");
-/* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__);
-
 
 
 
@@ -2096,7 +2093,7 @@ var MockInterceptor = /** @class */ (function () {
             }
         };
         return next.handle(mockPathReq)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(onReqFinish), Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(200));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["tap"])(onReqFinish));
     };
     return MockInterceptor;
 }());
@@ -2260,6 +2257,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/internal/operators */ "./node_modules/rxjs/internal/operators/index.js");
 /* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _data_supplier_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data-supplier.service */ "./src/app/_core/rest-api/smart-resolver/data-supplier.service.ts");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../app.config */ "./src/app/app.config.ts");
+
 
 
 
@@ -2296,14 +2295,21 @@ var SmartResolver = /** @class */ (function () {
     }
     SmartResolver.prototype.resolve = function (route) {
         var _this = this;
-        var urls = route.data['toResolve'];
-        var params = route.params;
-        var reqs = [];
-        for (var uKey in urls) {
-            var reqUrl = urls[uKey];
+        this.toResolveUrls = route.data['toResolve'];
+        // const params = route.params;
+        // const reqs: Observable<Object>[] = [];
+        var urls = this.getUrls(route.params);
+        var reqFunc = _app_config__WEBPACK_IMPORTED_MODULE_5__["TO_USE_REST_MOCKUP"] ? this.mockReqs : this.joinReqs;
+        ;
+        return reqFunc.call(this, urls)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return _this.arrayToHash(data); }), Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return _this.dataSupplier.setData(data); }));
+    };
+    SmartResolver.prototype.getUrls = function (params) {
+        var reqUrlsArr = [];
+        for (var uKey in this.toResolveUrls) {
+            var reqUrl = this.toResolveUrls[uKey];
             if (typeof reqUrl == 'function') {
-                reqs.push(reqUrl());
-                continue;
+                throw new Error('SmartResolver: Not implemented using function instead of URL!');
             }
             for (var pKey in params) {
                 reqUrl = reqUrl.replace(':' + pKey, params[pKey]);
@@ -2311,23 +2317,53 @@ var SmartResolver = /** @class */ (function () {
             if (reqUrl.indexOf(':') !== -1) {
                 throw new Error('SmartResolver: URL does not contain required parameter!');
             }
-            reqs.push(this.http.get(reqUrl)
+            reqUrlsArr.push(reqUrl);
+        }
+        return reqUrlsArr;
+    };
+    SmartResolver.prototype.joinReqs = function (urls) {
+        var _this = this;
+        var reqs;
+        reqs = urls.map(function (u) {
+            return _this.http.get(u)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (error) {
                 // skip 404 error which is leagal response of a server!
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(null);
-            })));
-        }
-        var arrayToHash = function (data) {
-            var i = 0;
-            var o = {};
-            for (var uKey in urls) {
-                o[uKey] = data[i];
-                i++;
-            }
-            return o;
-        };
-        return rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"].apply(void 0, reqs).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return arrayToHash(data); }), Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (data) { return _this.dataSupplier.setData(data); }));
+            }));
+        });
+        //     reqs.push(this.http.get(urls)
+        //       .pipe(
+        //         catchError((error: HttpErrorResponse) => {
+        //           // skip 404 error which is leagal response of a server!
+        //           return of(null);
+        //         })
+        //       )
+        //     );
+        return rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"].apply(void 0, reqs);
+        /*      .pipe(
+                map(data => this.arrayToHash(data)),
+                tap(data => this.dataSupplier.setData(data))
+              )*/
     };
+    SmartResolver.prototype.mockReqs = function (urls) {
+        var _this = this;
+        var reqs;
+        reqs = urls.map(function (u, idx) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(u)
+                .pipe(Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(100 * idx), Object(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (u) { return _this.http.get(u); }));
+        });
+        return rxjs__WEBPACK_IMPORTED_MODULE_1__["forkJoin"].apply(void 0, reqs);
+    };
+    SmartResolver.prototype.arrayToHash = function (data) {
+        var i = 0;
+        var o = {};
+        for (var uKey in this.toResolveUrls) {
+            o[uKey] = data[i];
+            i++;
+        }
+        return o;
+    };
+    ;
     return SmartResolver;
 }());
 
